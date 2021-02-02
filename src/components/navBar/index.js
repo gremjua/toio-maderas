@@ -1,35 +1,53 @@
 import './navBar.css';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import NatureIcon from '@material-ui/icons/Nature';
+import { AppBar, Toolbar, Link, Grid } from '@material-ui/core';
 import CartWidget from './CartWidget';
-import Button from '@material-ui/core/Button';
+import Logo from './Logo';
+
+const navLinks = [
+    { title: 'Exterior', path: '/exterior' },
+    { title: 'Interior', path: '/interior' },
+    { title: 'A medida', path: '/aMedida' },
+];
 
 const NavBar = () => {
-    const sections = ['Productos para exterior', 'Productos para interior', 'Productos a medida'];
-    const spacing = 3;
     return (
         <div>
             <AppBar position="static">
                 <Toolbar>
-                    <NatureIcon fontSize="large"/>
-                    <Typography variant="h6">
-                        Toio Maderas
-                    </Typography>
-                    <Grid container justify="center" spacing={spacing} >
-                        {sections.map((section, index) => {
-                            return(<Grid key={index} item>
-                                <Button color="inherit">{section}</Button>    
-                            </Grid>)
-                        })}  
+                    <Grid
+                        container={true}
+                        justify="space-between"
+                        direction="row"
+                        alignItems="center"
+                    >
+                        <Grid item={true}>
+                            <Logo />
+                        </Grid>
+                        {navLinks.map(({ title, path }) => (
+                            <Grid
+                                key={title}
+                                item={true}
+                                md={Math.floor(12 / (navLinks.length + 1))}
+                            >
+                                <Link
+                                    href={path}
+                                    key={title}
+                                    underline="none"
+                                    color="inherit"
+                                    variant="button"
+                                >
+                                    {title}
+                                </Link>
+                            </Grid>
+                        ))}
+                        <Grid item={true}>
+                            <CartWidget />
+                        </Grid>
                     </Grid>
-                    <CartWidget/>
                 </Toolbar>
             </AppBar>
         </div>
-    )
-}
+    );
+};
 
 export default NavBar;
