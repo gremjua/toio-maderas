@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import ItemCount from './ItemCount';
 import ItemList from './ItemList';
 import madera1 from '../images/madera1.jpg';
 import madera2 from '../images/madera2.jpg';
+import ItemDetailContainer from './ItemDetailContainer';
+import { Box, CircularProgress } from '@material-ui/core';
+import { LoremIpsum } from 'lorem-ipsum';
 
 const getItems = () => {
     const items = [
@@ -12,6 +14,9 @@ const getItems = () => {
             imgUrl: madera1,
             price: 100,
             featured: false,
+            stock: 5,
+            initial: 1,
+            description: new LoremIpsum().generateParagraphs(2),
         },
         {
             id: 2,
@@ -19,6 +24,9 @@ const getItems = () => {
             imgUrl: madera2,
             price: 50.5,
             featured: false,
+            stock: 5,
+            initial: 1,
+            description: new LoremIpsum().generateParagraphs(2),
         },
         {
             id: 3,
@@ -26,6 +34,9 @@ const getItems = () => {
             imgUrl: madera1,
             price: 100,
             featured: false,
+            stock: 5,
+            initial: 1,
+            description: new LoremIpsum().generateParagraphs(2),
         },
         {
             id: 4,
@@ -33,6 +44,9 @@ const getItems = () => {
             imgUrl: madera2,
             price: 35,
             featured: false,
+            stock: 5,
+            initial: 1,
+            description: new LoremIpsum().generateParagraphs(2),
         },
     ];
     return new Promise((resolve) => {
@@ -65,12 +79,22 @@ const ItemListContainer = ({ greeting }) => {
     //     return <h1>Carrito vacio</h1>
     // }
 
-    return (
+    return items.length ? (
         <div>
+            <ItemDetailContainer />
             {greeting}
-            <ItemCount stock={5} initial={1} onAdd={() => console.log('Agregado al carrito')} />
             <ItemList items={items} />
         </div>
+    ) : (
+        <Box
+            display="flex"
+            width={'100%'}
+            height={'100vh'}
+            alignItems="center"
+            justifyContent="center"
+        >
+            <CircularProgress />
+        </Box>
     );
 };
 
