@@ -11,7 +11,7 @@ const ItemList = ({ items }) => {
             // style={{ minWidth: 300 }}
         >
             {items.map((item) => (
-                <Grid item={true} xs={6} sm={3}>
+                <Grid key={item.id} item={true} xs={6} sm={3}>
                     <Item item={item}></Item>
                 </Grid>
             ))}
