@@ -3,13 +3,7 @@ import { AppBar, Toolbar, Link, Grid } from '@material-ui/core';
 import CartWidget from './CartWidget';
 import Logo from './Logo';
 
-const navLinks = [
-    { title: 'Exterior', path: '/exterior' },
-    { title: 'Interior', path: '/interior' },
-    { title: 'A medida', path: '/aMedida' },
-];
-
-const NavBar = () => {
+const NavBar = ({ navLinks }) => {
     return (
         <div>
             <AppBar position="static">
