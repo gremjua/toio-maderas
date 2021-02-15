@@ -1,4 +1,5 @@
 import { ButtonBase, makeStyles, Typography } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     image: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         '&:hover, &$focusVisible': {
             zIndex: 1,
             '& $imageBackdrop': {
-                opacity: 0.2,
+                opacity: 0.5,
             },
             '& $imageTitle': {
                 border: '4px solid currentColor',
@@ -46,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
         top: 0,
         bottom: 0,
         backgroundColor: theme.palette.common.black,
-        opacity: 0,
+        opacity: 0.2,
         transition: theme.transitions.create('opacity'),
     },
     imageTitle: {
@@ -61,6 +62,8 @@ const Item = ({ item }) => {
     const classes = useStyles();
     return (
         <ButtonBase
+            component={RouterLink}
+            to={`/item/${item.id}`}
             focusRipple={true}
             key={item.id}
             className={classes.image}
@@ -77,12 +80,7 @@ const Item = ({ item }) => {
             />
             <span className={classes.imageBackdrop} />
             <span className={classes.imageButton}>
-                <Typography
-                    component="span"
-                    variant="subtitle1"
-                    color="inherit"
-                    className={classes.imageTitle}
-                >
+                <Typography component="span" variant="subtitle1" className={classes.imageTitle}>
                     {`${item.title} $${item.price}`}
                 </Typography>
             </span>
