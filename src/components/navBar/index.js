@@ -1,9 +1,10 @@
 import './navBar.css';
 import { AppBar, Toolbar, Link, Grid } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 import CartWidget from './CartWidget';
 import Logo from './Logo';
 
-const NavBar = ({ navLinks }) => {
+const NavBar = ({ categories }) => {
     return (
         <div>
             <AppBar position="static">
@@ -17,18 +18,22 @@ const NavBar = ({ navLinks }) => {
                         <Grid item={true}>
                             <Logo />
                         </Grid>
-                        {navLinks.map(({ title, path }) => (
+                        {categories.map(({ title, id }) => (
                             <Grid
-                                key={title}
+                                key={id}
                                 item={true}
-                                md={Math.floor(12 / (navLinks.length + 1))}
+                                md={Math.floor(12 / (categories.length + 1))}
                             >
                                 <Link
-                                    href={path}
+                                    to={`/category/${id}`}
+                                    activeStyle={{
+                                        fontWeight: 'bold',
+                                    }}
                                     key={title}
                                     underline="none"
                                     color="inherit"
                                     variant="button"
+                                    component={NavLink}
                                 >
                                     {title}
                                 </Link>
