@@ -3,7 +3,7 @@ import ItemCount from './ItemCount';
 
 const ItemDetail = ({ item }) => {
     return (
-        <Box padding={'5%'}>
+        <Box>
             <Grid container={true} direction="row" alignItems="center" spacing={3}>
                 <Grid item={true} xs={12} sm={6}>
                     <img
