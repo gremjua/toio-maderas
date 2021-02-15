@@ -8,7 +8,7 @@ const ItemList = ({ items }) => {
             direction="row"
             alignItems="center"
             spacing={3}
-            // style={{ minWidth: 300 }}
+            style={{ minWidth: 300 }}
         >
             {items.map((item) => (
                 <Grid key={item.id} item={true} xs={6} sm={3}>
