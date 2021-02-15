@@ -1,100 +1,50 @@
 import { useState, useEffect } from 'react';
 import ItemList from './ItemList';
-import madera1 from '../images/madera1.jpg';
-import madera2 from '../images/madera2.jpg';
-import ItemDetailContainer from './ItemDetailContainer';
-import { Box, CircularProgress } from '@material-ui/core';
-import { LoremIpsum } from 'lorem-ipsum';
+import Loading from './Loading';
+import { useParams } from 'react-router-dom';
+import { getItems, getItemsByCategory } from './mocks';
 
-const getItems = () => {
-    const items = [
-        {
-            id: 1,
-            title: 'A title',
-            imgUrl: madera1,
-            price: 100,
-            featured: false,
-            stock: 5,
-            initial: 1,
-            description: new LoremIpsum().generateParagraphs(2),
-        },
-        {
-            id: 2,
-            title: 'A title 2',
-            imgUrl: madera2,
-            price: 50.5,
-            featured: false,
-            stock: 5,
-            initial: 1,
-            description: new LoremIpsum().generateParagraphs(2),
-        },
-        {
-            id: 3,
-            title: 'A title 3',
-            imgUrl: madera1,
-            price: 100,
-            featured: false,
-            stock: 5,
-            initial: 1,
-            description: new LoremIpsum().generateParagraphs(2),
-        },
-        {
-            id: 4,
-            title: 'A title 4',
-            imgUrl: madera2,
-            price: 35,
-            featured: false,
-            stock: 5,
-            initial: 1,
-            description: new LoremIpsum().generateParagraphs(2),
-        },
-    ];
-    return new Promise((resolve) => {
-        setTimeout(function () {
-            resolve(items);
-        }, 2000);
-    });
-};
-
-const ItemListContainer = ({ greeting }) => {
-    const [cart, setCart] = useState([]);
+const ItemListContainer = () => {
     const [items, setItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const { categoryId } = useParams();
     useEffect(() => {
-        // consultas a BD y subscripciones como addEventListener
-        console.log('component mounted, make API calls?');
-        getItems().then((items) => setItems(items));
+        if (categoryId) {
+            console.log(`Received categoryId: ${categoryId}`);
+            getItemsByCategory(parseInt(categoryId)).then((items) => {
+                console.log('Items:', items);
+                setItems(items);
+                setIsLoading(false);
+            });
+        } else {
+            getItems().then((items) => {
+                setItems(items);
+                setIsLoading(false);
+            });
+        }
         return () => {
-            // desubscripciones de eventos y BD
-            console.log('component will unmount, cleanup');
-            // removeEventListener();
+            console.log(`Will change categoryId: ${categoryId}`);
+            setIsLoading(true);
         };
-    }, []);
+    }, [categoryId]);
+
     // filter [] will run on mount (after mount)
     // [prop] will run on mount and on changes to prop
     // [prop1, prop2] will run on mount and on changes to prop1, prop2
 
     // se vuelve a renderizar, validaciones
     console.log('component will mount / render');
-    // if(!cart.length){
-    //     return <h1>Carrito vacio</h1>
-    // }
+
+    if (isLoading) {
+        return <Loading />;
+    }
 
     return items.length ? (
         <div>
-            <ItemDetailContainer />
-            {greeting}
             <ItemList items={items} />
         </div>
     ) : (
-        <Box
-            display="flex"
-            width={'100%'}
-            height={'100vh'}
-            alignItems="center"
-            justifyContent="center"
-        >
-            <CircularProgress />
-        </Box>
+        <div>No hay datos</div>
     );
 };
 
