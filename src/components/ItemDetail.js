@@ -1,7 +1,22 @@
-import { Box, Grid, Typography } from '@material-ui/core';
+import { Box, Button, Grid, Typography } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+import { useState } from 'react';
 import ItemCount from './ItemCount';
 
 const ItemDetail = ({ item }) => {
+    const [addedToCart, setAddedToCart] = useState(undefined);
+    const addToCart = (quantity) => setAddedToCart({ itemId: item.id, quantity });
+    const renderItemCount = () => {
+        if (addedToCart) {
+            return (
+                <Button component={RouterLink} to="/cart" color="primary" variant="contained">
+                    Terminar Compra
+                </Button>
+            );
+        } else {
+            return <ItemCount stock={item.stock} initial={item.initial} onAdd={() => addToCart} />;
+        }
+    };
     return (
         <Box>
             <Grid container={true} direction="row" alignItems="center" spacing={3}>
@@ -15,11 +30,7 @@ const ItemDetail = ({ item }) => {
                 <Grid item={true} xs={12} sm={6}>
                     <Typography variant="h5">{item.title}</Typography>
                     <Typography variant="h6">{`$${item.price}`}</Typography>
-                    <ItemCount
-                        stock={item.stock}
-                        initial={item.initial}
-                        onAdd={() => console.log('Agregado al carrito')}
-                    />
+                    {renderItemCount()}
                 </Grid>
                 <Grid item={true} xs={12}>
                     <Typography variant="body2" align="left">

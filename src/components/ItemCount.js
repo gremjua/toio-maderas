@@ -26,7 +26,7 @@ const ItemCount = ({ stock = 1, initial = 1, onAdd }) => {
                     color="primary"
                     variant="contained"
                     startIcon={<AddShoppingCartOutlinedIcon />}
-                    onClick={quantity <= stock ? onAdd : null}
+                    onClick={quantity <= stock ? onAdd(quantity) : null}
                 >
                     Agregar al carrito
                 </Button>
