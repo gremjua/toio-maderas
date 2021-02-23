@@ -1,11 +1,16 @@
 import { Box, Button, Grid, Typography } from '@material-ui/core';
 import { Link as RouterLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ItemCount from './ItemCount';
+import { CartContext } from '../context/CartContext';
 
 const ItemDetail = ({ item }) => {
-    const [addedToCart, setAddedToCart] = useState(undefined);
-    const addToCart = (quantity) => setAddedToCart({ itemId: item.id, quantity });
+    const { addItem } = useContext(CartContext);
+    const [addedToCart, setAddedToCart] = useState(false);
+    const addToCart = (quantity) => {
+        setAddedToCart(true);
+        addItem(item, quantity);
+    };
     const renderItemCount = () => {
         if (addedToCart) {
             return (
@@ -14,7 +19,7 @@ const ItemDetail = ({ item }) => {
                 </Button>
             );
         } else {
-            return <ItemCount stock={item.stock} initial={item.initial} onAdd={() => addToCart} />;
+            return <ItemCount stock={item.stock} initial={item.initial} onAdd={addToCart} />;
         }
     };
     return (

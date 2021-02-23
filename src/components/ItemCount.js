@@ -26,7 +26,7 @@ const ItemCount = ({ stock = 1, initial = 1, onAdd }) => {
                     color="primary"
                     variant="contained"
                     startIcon={<AddShoppingCartOutlinedIcon />}
-                    onClick={quantity <= stock ? onAdd(quantity) : null}
+                    onClick={quantity <= stock ? () => onAdd(quantity) : null}
                 >
                     Agregar al carrito
                 </Button>
@@ -36,3 +36,7 @@ const ItemCount = ({ stock = 1, initial = 1, onAdd }) => {
 };
 
 export default ItemCount;
+
+//mercadopago
+//crear preferencia, en respuesta viene el field "initPoint" que contiene una url
+// en esa url se puede hacer el pago!
