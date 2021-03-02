@@ -3,6 +3,7 @@ import ItemListContainer from './components/ItemListContainer';
 import ItemDetailContainer from './components/ItemDetailContainer';
 import NavBar from './components/navBar';
 import { CartProvider } from './context/CartContext';
+import Cart from './components/cart';
 
 const categories = [
     { title: 'Exterior', id: 1 },
@@ -20,6 +21,7 @@ function App() {
                         <Route exact path="/" component={ItemListContainer} />
                         <Route path="/category/:categoryId" component={ItemListContainer} />
                         <Route path="/item/:itemId" component={ItemDetailContainer} />
+                        <Route exact path="/cart" component={Cart} />
                     </Switch>
                 </div>
             </BrowserRouter>
