@@ -1,8 +1,7 @@
-import { Button, Grid, IconButton, Typography } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
+import { Button, Grid } from '@material-ui/core';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 import { useState } from 'react';
+import ItemCounter from './ItemCounter';
 
 const ItemCount = ({ stock = 1, initial = 1, onAdd }) => {
     const [quantity, setQuantity] = useState(initial);
@@ -12,13 +11,11 @@ const ItemCount = ({ stock = 1, initial = 1, onAdd }) => {
         <Grid container={true} direction="column" alignItems="center">
             <Grid item={true}>
                 <Grid container={true} direction="row" alignItems="center">
-                    <IconButton onClick={onRemoveUnit}>
-                        <RemoveIcon />
-                    </IconButton>
-                    <Typography>{quantity}</Typography>
-                    <IconButton onClick={onAddUnit}>
-                        <AddIcon />
-                    </IconButton>
+                    <ItemCounter
+                        quantity={quantity}
+                        onRemoveUnit={onRemoveUnit}
+                        onAddUnit={onAddUnit}
+                    />
                 </Grid>
             </Grid>
             <Grid item={true}>
