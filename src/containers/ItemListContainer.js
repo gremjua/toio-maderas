@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import ItemList from './ItemList';
-import Loading from './Loading';
+import ItemList from '../components/ItemList';
+import Loading from '../components/Loading';
 import { useParams } from 'react-router-dom';
-import { getItems, getItemsByCategory } from './mocks';
+import { getItems, getItemsByCategory } from '../components/mocks';
 
 const ItemListContainer = () => {
     const [items, setItems] = useState([]);

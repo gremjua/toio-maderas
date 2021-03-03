@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ItemDetail from './ItemDetail';
-import Loading from './Loading';
-import { getItem } from './mocks';
+import ItemDetail from '../components/ItemDetail';
+import Loading from '../components/Loading';
+import { getItem } from '../components/mocks';
 
 const ItemDetailContainer = () => {
     const [item, setItem] = useState(undefined);
