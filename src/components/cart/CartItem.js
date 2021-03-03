@@ -26,7 +26,7 @@ const CartItem = ({ itemAndQuantity }) => {
                     alignItems="center"
                 >
                     <img
-                        src={item.imgUrl}
+                        src={item.imageUrl}
                         alt={item.title}
                         style={{ width: '100%', height: 'auto' }}
                     />

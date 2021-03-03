@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 // TODO: improve CSS and location of title and price, also add star for favorites/ add to cart
 const Item = ({ item }) => {
-    //id, title, imgUrl, price, featured: boolean
+    //id, title, imageUrl, price, featured: boolean
     const classes = useStyles();
     return (
         <ButtonBase
@@ -75,7 +75,7 @@ const Item = ({ item }) => {
             <span
                 className={classes.imageSrc}
                 style={{
-                    backgroundImage: `url(${item.imgUrl})`,
+                    backgroundImage: `url(${item.imageUrl})`,
                 }}
             />
             <span className={classes.imageBackdrop} />

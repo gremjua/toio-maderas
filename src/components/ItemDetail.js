@@ -27,7 +27,7 @@ const ItemDetail = ({ item }) => {
             <Grid container={true} direction="row" alignItems="center" spacing={3}>
                 <Grid item={true} xs={12} sm={6}>
                     <img
-                        src={item.imgUrl}
+                        src={item.imageUrl}
                         alt={item.title}
                         style={{ width: '100%', height: 'auto' }}
                     />

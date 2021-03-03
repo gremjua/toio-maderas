@@ -6,7 +6,7 @@ const items = [
     {
         id: 1,
         title: 'A title',
-        imgUrl: madera1,
+        imageUrl: madera1,
         price: 100,
         featured: false,
         stock: 5,
@@ -17,7 +17,7 @@ const items = [
     {
         id: 2,
         title: 'A title 2',
-        imgUrl: madera2,
+        imageUrl: madera2,
         price: 50.5,
         featured: false,
         stock: 5,
@@ -28,7 +28,7 @@ const items = [
     {
         id: 3,
         title: 'A title 3',
-        imgUrl: madera1,
+        imageUrl: madera1,
         price: 100,
         featured: false,
         stock: 5,
@@ -39,7 +39,7 @@ const items = [
     {
         id: 4,
         title: 'A title 4',
-        imgUrl: madera2,
+        imageUrl: madera2,
         price: 35,
         featured: false,
         stock: 5,
