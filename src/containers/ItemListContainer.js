@@ -1,32 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import ItemList from '../components/ItemList';
 import Loading from '../components/Loading';
 import { useParams } from 'react-router-dom';
-import { getItems, getItemsByCategory } from '../components/mocks';
+import { ItemsContext } from '../context/ItemsContext';
 
 const ItemListContainer = () => {
-    const [items, setItems] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+    const { items, isLoading } = useContext(ItemsContext);
+    const [displayedItems, setDisplayedItems] = useState([]);
     const { categoryId } = useParams();
     useEffect(() => {
         if (categoryId) {
             console.log(`Received categoryId: ${categoryId}`);
-            getItemsByCategory(parseInt(categoryId)).then((items) => {
-                console.log('Items:', items);
-                setItems(items);
-                setIsLoading(false);
-            });
+            setDisplayedItems([
+                ...items.filter((item) => item.categoryId === parseInt(categoryId)),
+            ]);
         } else {
-            getItems().then((items) => {
-                setItems(items);
-                setIsLoading(false);
-            });
+            setDisplayedItems([...items]);
         }
         return () => {
-            console.log(`Will change categoryId: ${categoryId}`);
-            setIsLoading(true);
+            console.log(`Will change categoryId from: ${categoryId}`);
         };
-    }, [categoryId]);
+    }, [categoryId, items]);
 
     // filter [] will run on mount (after mount)
     // [prop] will run on mount and on changes to prop
@@ -39,9 +33,9 @@ const ItemListContainer = () => {
         return <Loading />;
     }
 
-    return items.length ? (
+    return displayedItems.length ? (
         <div>
-            <ItemList items={items} />
+            <ItemList items={displayedItems} />
         </div>
     ) : (
         <div>No hay datos</div>

@@ -1,27 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../components/ItemDetail';
 import Loading from '../components/Loading';
-import { getItem } from '../components/mocks';
+import { ItemsContext } from '../context/ItemsContext';
 
 const ItemDetailContainer = () => {
-    const [item, setItem] = useState(undefined);
-    const [isLoading, setIsLoading] = useState(true);
+    const { items, isLoading } = useContext(ItemsContext);
+    const [displayedItem, setDisplayedItem] = useState(undefined);
     const { itemId } = useParams();
     useEffect(() => {
         if (itemId) {
-            getItem(parseInt(itemId)).then((item) => {
-                setItem(item);
-                setIsLoading(false);
-            });
+            setDisplayedItem(items.find((item) => item.id === parseInt(itemId)));
         }
-    }, [itemId]);
+    }, [itemId, items]);
     if (isLoading) {
         return <Loading />;
     }
-    return item ? (
+    return displayedItem ? (
         <div>
-            <ItemDetail item={item} />
+            <ItemDetail item={displayedItem} />
         </div>
     ) : (
         <div>No hay datos</div>

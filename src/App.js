@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ItemListContainer from './containers/ItemListContainer';
 import ItemDetailContainer from './containers/ItemDetailContainer';
+import PageContainer from './containers/PageContainer';
 import NavBar from './components/navBar';
 import { CartProvider } from './context/CartContext';
+import { ItemsProvider } from './context/ItemsContext';
 import Cart from './components/cart';
 
 const categories = [
@@ -16,14 +18,16 @@ function App() {
         <CartProvider>
             <BrowserRouter>
                 <NavBar categories={categories} />
-                <div id="App" style={{ padding: '5%' }}>
-                    <Switch>
-                        <Route exact path="/" component={ItemListContainer} />
-                        <Route path="/category/:categoryId" component={ItemListContainer} />
-                        <Route path="/item/:itemId" component={ItemDetailContainer} />
-                        <Route exact path="/cart" component={Cart} />
-                    </Switch>
-                </div>
+                <ItemsProvider>
+                    <PageContainer>
+                        <Switch>
+                            <Route exact path="/" component={ItemListContainer} />
+                            <Route path="/category/:categoryId" component={ItemListContainer} />
+                            <Route path="/item/:itemId" component={ItemDetailContainer} />
+                            <Route exact path="/cart" component={Cart} />
+                        </Switch>
+                    </PageContainer>
+                </ItemsProvider>
             </BrowserRouter>
         </CartProvider>
     );
