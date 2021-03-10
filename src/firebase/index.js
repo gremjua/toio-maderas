@@ -23,3 +23,7 @@ export const getFireBase = () => {
 export const getFireStore = () => {
     return firebase.firestore(app);
 };
+
+export const getTimestamp = () => {
+    return firebase.firestore.Timestamp.fromDate(new Date());
+};

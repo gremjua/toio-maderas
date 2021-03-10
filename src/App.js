@@ -6,6 +6,7 @@ import NavBar from './components/navBar';
 import { CartProvider } from './context/CartContext';
 import { ItemsProvider } from './context/ItemsContext';
 import Cart from './components/cart';
+import CheckOut from './components/checkOut';
 
 const categories = [
     { title: 'Exterior', id: 1 },
@@ -25,6 +26,7 @@ function App() {
                             <Route path="/category/:categoryId" component={ItemListContainer} />
                             <Route path="/item/:itemId" component={ItemDetailContainer} />
                             <Route exact path="/cart" component={Cart} />
+                            <Route exact path="/checkout" component={CheckOut} />
                         </Switch>
                     </PageContainer>
                 </ItemsProvider>
