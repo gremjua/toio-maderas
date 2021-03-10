@@ -43,7 +43,7 @@ const CartItem = ({ itemAndQuantity }) => {
                 />
             </Grid>
             <Grid item={true} xs={4}>
-                <Typography component="span" variant="h6">
+                <Typography component="span" variant="subtitle1">
                     {`$${item.price * quantity}`}
                 </Typography>
                 <IconButton onClick={doRemoveItem}>

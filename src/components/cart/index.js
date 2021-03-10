@@ -3,11 +3,26 @@ import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { Link as RouterLink } from 'react-router-dom';
 import CartList from './CartList';
+import CartTotal from './CartTotal';
+import GoToCheckout from '../GoToCheckout';
 
 const Cart = () => {
     const { cart } = useContext(CartContext);
     return cart.length > 0 ? (
-        <CartList cart={cart} />
+        <>
+            <CartList cart={cart} />
+            <CartTotal />
+            <Box
+                paddingTop="2em"
+                display="flex"
+                width="100%"
+                alignItems="center"
+                justifyContent="center"
+                flexDirection="row"
+            >
+                <GoToCheckout />
+            </Box>
+        </>
     ) : (
         <Box
             display="flex"
