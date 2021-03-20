@@ -76,7 +76,7 @@ const CheckOut = () => {
             <UserForm handleInputChange={handleInputChange} />
             <Box padding="2em" display="flex" justifyContent="center" alignItems="center">
                 <Button color="primary" variant="contained" onClick={handleBuy}>
-                    Comprar
+                    Realizar compra
                 </Button>
             </Box>
         </>

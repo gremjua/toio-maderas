@@ -1,10 +1,10 @@
-import { Grid, TextField, Typography } from '@material-ui/core';
+import { Divider, Grid, TextField, Typography } from '@material-ui/core';
 
 const UserForm = ({ handleInputChange }) => {
     return (
         <>
             <Typography variant="h6" gutterBottom>
-                Llená tus datos
+                Llená tus datos para el envío
             </Typography>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -17,6 +17,9 @@ const UserForm = ({ handleInputChange }) => {
                         autoComplete="given-name"
                         onChange={handleInputChange}
                     />
+                </Grid>
+                <Grid item xs={12}>
+                    <Divider />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
@@ -31,6 +34,7 @@ const UserForm = ({ handleInputChange }) => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
+                        required
                         id="address2"
                         name="address2"
                         label="Número"
@@ -41,9 +45,10 @@ const UserForm = ({ handleInputChange }) => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
+                        required
                         id="address3"
                         name="address3"
-                        label="Datos adicionales (piso, departamento)"
+                        label="Datos adicionales (piso, depto)"
                         fullWidth
                         autoComplete="shipping address-line3"
                         onChange={handleInputChange}
@@ -62,6 +67,7 @@ const UserForm = ({ handleInputChange }) => {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField
+                        required
                         id="state"
                         name="state"
                         label="Estado/Provincia/Región"
@@ -81,6 +87,9 @@ const UserForm = ({ handleInputChange }) => {
                     />
                 </Grid>
                 <Grid item xs={12}>
+                    <Divider />
+                </Grid>
+                <Grid item xs={12}>
                     <TextField
                         required
                         id="email"
@@ -94,6 +103,16 @@ const UserForm = ({ handleInputChange }) => {
                 <Grid item xs={12}>
                     <TextField
                         required
+                        id="email-confirm"
+                        name="email-confirm"
+                        label="Confirma tu e-mail"
+                        fullWidth
+                        autoComplete="email"
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
                         id="phone"
                         name="phone"
                         label="Teléfono"
