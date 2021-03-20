@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { Box, Grid, IconButton, Typography } from '@material-ui/core';
+import { Box, Divider, Grid, IconButton, Typography } from '@material-ui/core';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import ItemCounter from '../ItemCounter';
 
@@ -49,6 +49,9 @@ const CartItem = ({ itemAndQuantity }) => {
                 <IconButton onClick={doRemoveItem}>
                     <RemoveShoppingCartIcon />
                 </IconButton>
+            </Grid>
+            <Grid item={true} xs={12}>
+                <Divider />
             </Grid>
         </Grid>
     );

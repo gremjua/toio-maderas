@@ -5,11 +5,13 @@ import { Link as RouterLink } from 'react-router-dom';
 import CartList from './CartList';
 import CartTotal from './CartTotal';
 import GoToCheckout from '../GoToCheckout';
+import CartListHeader from './CartListHeader';
 
 const Cart = () => {
     const { cart } = useContext(CartContext);
     return cart.length > 0 ? (
         <>
+            <CartListHeader />
             <CartList cart={cart} />
             <CartTotal />
             <Box
