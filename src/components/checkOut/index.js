@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { createOrder } from '../../firebase/createOrder';
@@ -7,29 +7,18 @@ import Loading from '../Loading';
 
 const CheckOut = () => {
     const { cart, getTotals } = useContext(CartContext);
-    const [userData, setUserData] = useState({});
     const [orderId, setOrderId] = useState(undefined);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(undefined);
 
-    const handleInputChange = (event) => {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        setUserData({
-            ...userData,
-            [name]: value,
-        });
-    };
-    const handleBuy = () => {
+    const handlePurchase = (userData) => {
         const newOrder = {
             buyer: { name: userData.buyerName, phone: userData.phone, email: userData.email },
             items: cart,
             total: getTotals().totalPrice,
         };
         setIsLoading(true);
-        createOrder(newOrder)
+        return createOrder(newOrder)
             .then(({ id }) => {
                 setOrderId(id);
             })
@@ -73,12 +62,7 @@ const CheckOut = () => {
     }
     return (
         <>
-            <UserForm handleInputChange={handleInputChange} />
-            <Box padding="2em" display="flex" justifyContent="center" alignItems="center">
-                <Button color="primary" variant="contained" onClick={handleBuy}>
-                    Realizar compra
-                </Button>
-            </Box>
+            <UserForm handlePurchase={handlePurchase} />
         </>
     );
 };
