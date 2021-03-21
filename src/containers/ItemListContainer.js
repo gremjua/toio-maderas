@@ -3,6 +3,7 @@ import ItemList from '../components/ItemList';
 import Loading from '../components/Loading';
 import { useParams } from 'react-router-dom';
 import { ItemsContext } from '../context/ItemsContext';
+import NoData from '../components/NoData';
 
 const ItemListContainer = () => {
     const { items, isLoading } = useContext(ItemsContext);
@@ -38,7 +39,7 @@ const ItemListContainer = () => {
             <ItemList items={displayedItems} />
         </div>
     ) : (
-        <div>No hay datos</div>
+        <NoData message={'¡No se encontraron productos!'} />
     );
 };
 

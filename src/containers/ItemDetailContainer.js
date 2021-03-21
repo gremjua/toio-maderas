@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../components/ItemDetail';
 import Loading from '../components/Loading';
+import NoData from '../components/NoData';
 import { ItemsContext } from '../context/ItemsContext';
 
 const ItemDetailContainer = () => {
@@ -21,7 +22,7 @@ const ItemDetailContainer = () => {
             <ItemDetail item={displayedItem} />
         </div>
     ) : (
-        <div>No hay datos</div>
+        <NoData message={'¡No encontramos el producto con este ID!'} />
     );
 };
 

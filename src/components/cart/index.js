@@ -1,11 +1,11 @@
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { Link as RouterLink } from 'react-router-dom';
 import CartList from './CartList';
 import CartTotal from './CartTotal';
 import GoToCheckout from '../GoToCheckout';
 import CartListHeader from './CartListHeader';
+import NoData from '../NoData';
 
 const Cart = () => {
     const { cart } = useContext(CartContext);
@@ -26,19 +26,7 @@ const Cart = () => {
             </Box>
         </>
     ) : (
-        <Box
-            display="flex"
-            width={'100%'}
-            height={'100vh'}
-            alignItems="center"
-            justifyContent="center"
-            flexDirection="column"
-        >
-            <Typography variant="h6">¡El carrito está vacío!</Typography>
-            <Button component={RouterLink} to="/" variant="outlined">
-                Ver productos
-            </Button>
-        </Box>
+        <NoData message={'¡El carrito está vacío!'} />
     );
 };
 
