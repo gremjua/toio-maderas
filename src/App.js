@@ -7,6 +7,7 @@ import { CartProvider } from './context/CartContext';
 import { ItemsProvider } from './context/ItemsContext';
 import Cart from './components/cart';
 import CheckOut from './components/checkOut';
+import Order from './components/order';
 
 const categories = [
     { title: 'Exterior', id: 1 },
@@ -27,6 +28,7 @@ function App() {
                             <Route path="/item/:itemId" component={ItemDetailContainer} />
                             <Route exact path="/cart" component={Cart} />
                             <Route exact path="/checkout" component={CheckOut} />
+                            <Route path="/order/:orderId" component={Order} />
                         </Switch>
                     </PageContainer>
                 </ItemsProvider>
