@@ -5,7 +5,7 @@ Luego de llenar sus datos, el usuario puede realizar la compra de los productos 
 
 ## Demo
 Puede interactuarse con la aplicación en [https://toio-maderas.netlify.app/](https://toio-maderas.netlify.app/).
-
+![Alt Text](docs/toio-maderas.gif)
 ## Requerimientos
 Esta aplicación ha sido desarrollada en `Node v12.18.3`. Se recomienda instalar esta misma versión antes de ejecutar la aplicación localmente.
 ## Uso
