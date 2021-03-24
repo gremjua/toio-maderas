@@ -28,7 +28,7 @@ export const createMercadoPagoOrder = (cart, orderId) => {
             };
         }),
         back_urls: {
-            success: `https://localhost:3000/order/${orderId}`,
+            success: `https://toio-maderas.netlify.app/order/${orderId}`,
         },
         auto_return: 'approved',
     };
